@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect, useRef } from "react";
+import { CSSProperties, MouseEvent, useEffect, useRef, useState } from "react";
 import styles from "./ConnectWalletModal.module.css";
 
 interface ConnectWalletModalProps {
@@ -26,6 +26,9 @@ export default function ConnectWalletModal({
 }: ConnectWalletModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const [hoveredOptionId, setHoveredOptionId] = useState<string | null>(null);
+  const [focusedOptionId, setFocusedOptionId] = useState<string | null>(null);
+  const [isCloseFocused, setIsCloseFocused] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
@@ -124,11 +127,13 @@ export default function ConnectWalletModal({
           type="button"
           ref={closeButtonRef}
           style={{
-            ...styles.closeButton,
+            ...localStyles.closeButton,
             boxShadow: isCloseFocused
               ? "0 0 0 2px var(--surface-base), 0 0 0 4px var(--interactive-focus-ring)"
               : "none",
           }}
+          onFocus={() => setIsCloseFocused(true)}
+          onBlur={() => setIsCloseFocused(false)}
           onClick={onClose}
           aria-label="Close wallet connection dialog"
         >
@@ -160,7 +165,7 @@ export default function ConnectWalletModal({
           </p>
         </div>
 
-        <div style={styles.walletList} role="list" aria-label="Wallet providers">
+        <div style={localStyles.walletList} role="list" aria-label="Wallet providers">
           {walletOptions.map((wallet) => {
             const isActive =
               hoveredOptionId === wallet.id || focusedOptionId === wallet.id;
@@ -170,7 +175,7 @@ export default function ConnectWalletModal({
                 key={wallet.id}
                 type="button"
                 style={{
-                  ...styles.walletOption,
+                  ...localStyles.walletOption,
                   background: isActive ? "var(--surface-elevated)" : "var(--surface-neutral)",
                   borderColor: isActive ? "var(--border-interactive)" : "var(--border-neutral)",
                   boxShadow: isActive
@@ -184,35 +189,32 @@ export default function ConnectWalletModal({
                 onBlur={() => setFocusedOptionId(null)}
                 aria-label={`Connect with ${wallet.name}`}
               >
-                <div style={styles.walletIcon} aria-hidden="true">
+                <div style={localStyles.walletIcon} aria-hidden="true">
                   {wallet.icon}
                 </div>
-                <div style={styles.walletInfo}>
-                  <div style={styles.walletName}>{wallet.name}</div>
-                  <div style={styles.walletDescription}>{wallet.description}</div>
+                <div style={localStyles.walletInfo}>
+                  <div style={localStyles.walletName}>{wallet.name}</div>
+                  <div style={localStyles.walletDescription}>{wallet.description}</div>
                 </div>
-                <div style={styles.chevron} aria-hidden="true">
-                  →
-                </div>
-              </div>
-              <svg
-                className={styles.chevron}
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M6 3l5 5-5 5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          ))}
+                <svg
+                  className={styles.chevron}
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 3l5 5-5 5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            );
+          })}
         </div>
 
         {/* Footer */}
@@ -228,7 +230,7 @@ export default function ConnectWalletModal({
   );
 }
 
-const styles: Record<string, CSSProperties> = {
+const localStyles: Record<string, CSSProperties> = {
   backdrop: {
     position: "fixed",
     top: 0,

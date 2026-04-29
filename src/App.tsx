@@ -11,6 +11,7 @@ import ConnectWallet from "./pages/ConnectWallet";
 import Landing from "./pages/Landing";
 import ErrorPage from "./pages/ErrorPage";
 import NotFound from "./pages/NotFound";
+import TreasuryPage from "./pages/TreasuryPage";
 
 function LegacyStreamRedirect() {
   const { streamId } = useParams();
