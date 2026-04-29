@@ -20,28 +20,24 @@ describe("StatusPill", () => {
   it("applies correct styles for Active status", () => {
     const { container } = render(<StatusPill status="Active" />);
     const pill = container.firstChild as HTMLElement;
-    
-    // Check inline styles use CSS variables
-    const inlineStyle = pill.getAttribute("style") || "";
-    expect(inlineStyle).toContain("var(--color-success)");
-    expect(inlineStyle).toContain("var(--color-success-bg)");
+    const style = window.getComputedStyle(pill);
+    expect(style.color).toBe("var(--color-success)");
+    expect(style.backgroundColor).toBe("var(--color-success-bg)");
   });
 
   it("applies correct styles for Paused status", () => {
     const { container } = render(<StatusPill status="Paused" />);
     const pill = container.firstChild as HTMLElement;
-    
-    const inlineStyle = pill.getAttribute("style") || "";
-    expect(inlineStyle).toContain("var(--color-warning)");
-    expect(inlineStyle).toContain("var(--color-warning-bg)");
+    const style = window.getComputedStyle(pill);
+    expect(style.color).toBe("var(--color-warning)");
+    expect(style.backgroundColor).toBe("var(--color-warning-bg)");
   });
 
   it("applies correct styles for Completed status", () => {
     const { container } = render(<StatusPill status="Completed" />);
     const pill = container.firstChild as HTMLElement;
-    
-    const inlineStyle = pill.getAttribute("style") || "";
-    expect(inlineStyle).toContain("var(--color-info)");
-    expect(inlineStyle).toContain("var(--color-info-bg)");
+    const style = window.getComputedStyle(pill);
+    expect(style.color).toBe("var(--color-info)");
+    expect(style.backgroundColor).toBe("var(--color-info-bg)");
   });
 });

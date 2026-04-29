@@ -11,6 +11,8 @@ import { Metric } from "./Metric";
 export default function MetricCard({ icon, label, value, desc }: Metric) {
   return (
     <div
+      className="flex flex-col rounded-xl p-6 h-full"
+      style={{ backgroundColor: "var(--color-surface-default)", border: "1px solid var(--color-border-default)" }}
       role="group"
       aria-label={label}
       style={{
@@ -23,55 +25,19 @@ export default function MetricCard({ icon, label, value, desc }: Metric) {
         height: "100%",
       }}
     >
-      {/* Icon */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: 40,
-          height: 40,
-          fontSize: "1.75rem",
-          lineHeight: 1,
-          marginBottom: "var(--space-lg)",
-          flexShrink: 0,
-        }}
-        aria-hidden="true"
-      >
+      <div className="flex items-center justify-center w-10 h-10 text-3xl leading-none mb-4 shrink-0" style={{ color: "var(--color-text-secondary)" }}>
         {icon}
       </div>
 
-      {/* Label */}
-      <div
-        style={{
-          font: "var(--font-label-md)",
-          color: "var(--color-text-tertiary)",
-          marginBottom: "var(--space-sm)",
-        }}
-      >
+      <div className="font-medium text-sm leading-5 mb-2" style={{ color: "var(--color-text-primary)" }}>
         {label}
       </div>
 
-      {/* Value */}
-      <div
-        style={{
-          font: "var(--font-heading-2)",
-          color: "var(--color-text-primary)",
-          marginBottom: "var(--space-sm)",
-        }}
-      >
+      <div className="text-2xl font-semibold leading-8 mb-2" style={{ color: "var(--color-text-vivid)" }}>
         {value}
       </div>
 
-      {/* Description */}
-      <p
-        style={{
-          font: "var(--font-body-sm)",
-          color: "var(--color-text-tertiary)",
-          marginTop: "auto",
-          margin: 0,
-        }}
-      >
+      <p className="text-sm leading-5 mt-auto" style={{ color: "var(--color-text-secondary)" }}>
         {desc}
       </p>
     </div>

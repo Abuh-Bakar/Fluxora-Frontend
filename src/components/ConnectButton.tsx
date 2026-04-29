@@ -22,7 +22,7 @@ export default function ConnectButton({ onClick }: ConnectButtonProps) {
         height="14"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="currentColor"
+        stroke="var(--status-info)"
         strokeWidth="2.2"
         strokeLinecap="round"
         strokeLinejoin="round"
