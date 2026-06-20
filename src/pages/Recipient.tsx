@@ -26,7 +26,7 @@ export default function Recipient() {
   const activeStreams = 2;
   const totalAccrued = 43250.0;
   const totalWithdrawn = 20650.0;
-  
+
   const walletConnected = wallet.connected;
   const hasStreams = activeStreams > 0;
 
