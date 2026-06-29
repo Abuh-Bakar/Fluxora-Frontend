@@ -27,8 +27,8 @@ export interface TreasuryOverviewData {
  * @returns `true` if demo mode is enabled and not in production, `false` otherwise.
  */
 export function isTreasuryDemoMode(
-  value = import.meta.env.VITE_DEMO_MODE,
-  isProd = import.meta.env.PROD
+  value: string | undefined = import.meta.env.VITE_DEMO_MODE,
+  isProd: boolean | string = import.meta.env.PROD
 ): boolean {
   if (isProd) {
     return false;

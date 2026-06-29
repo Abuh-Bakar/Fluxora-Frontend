@@ -1150,7 +1150,7 @@ export default function Streams() {
                 setCurrentPage(page);
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
-              onItemsPerPageChange={(limit) => {
+              onItemsPerPageChange={(limit: number) => {
                 setItemsPerPage(limit);
                 setCurrentPage(1);
               }}

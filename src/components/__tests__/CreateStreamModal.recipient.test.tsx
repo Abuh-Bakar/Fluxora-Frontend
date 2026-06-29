@@ -27,6 +27,11 @@ describe('CreateStreamModal: Self-send validation', () => {
       network: 'TESTNET',
       connect: vi.fn(),
       disconnect: vi.fn(),
+      expectedNetwork: 'TESTNET',
+      expectedNetworkLabel: 'Testnet',
+      isNetworkMismatch: false,
+      error: null,
+      loading: false,
     });
 
     const { container } = renderModal();
@@ -57,6 +62,11 @@ describe('CreateStreamModal: Self-send validation', () => {
       network: 'TESTNET',
       connect: vi.fn(),
       disconnect: vi.fn(),
+      expectedNetwork: 'TESTNET',
+      expectedNetworkLabel: 'Testnet',
+      isNetworkMismatch: false,
+      error: null,
+      loading: false,
     });
 
     const { container } = renderModal();
@@ -81,6 +91,11 @@ describe('CreateStreamModal: Self-send validation', () => {
       network: 'TESTNET',
       connect: vi.fn(),
       disconnect: vi.fn(),
+      expectedNetwork: 'TESTNET',
+      expectedNetworkLabel: 'Testnet',
+      isNetworkMismatch: false,
+      error: null,
+      loading: false,
     });
 
     const { container } = renderModal();
@@ -105,6 +120,11 @@ describe('CreateStreamModal: Self-send validation', () => {
       network: null,
       connect: vi.fn(),
       disconnect: vi.fn(),
+      expectedNetwork: 'TESTNET',
+      expectedNetworkLabel: 'Testnet',
+      isNetworkMismatch: false,
+      error: null,
+      loading: false,
     });
 
     const { container } = renderModal();

@@ -33,7 +33,8 @@ describe("useTreasuryOverviewData", () => {
 
     it("respects the environment variables correctly by default", () => {
       vi.stubEnv("VITE_DEMO_MODE", "true");
-      vi.stubEnv("PROD", "");
+      // @ts-expect-error PROD is boolean in vite types but we need a falsy string here
+      vi.stubEnv("PROD", "false");
       expect(isTreasuryDemoMode()).toBe(true);
 
       vi.stubEnv("VITE_DEMO_MODE", "false");
@@ -44,7 +45,8 @@ describe("useTreasuryOverviewData", () => {
   describe("useTreasuryOverviewData hook", () => {
     it("returns mock data immediately when demo mode is active", () => {
       vi.stubEnv("VITE_DEMO_MODE", "true");
-      vi.stubEnv("PROD", "");
+      // @ts-expect-error PROD is boolean in vite types but we need a falsy string here
+      vi.stubEnv("PROD", "false");
       useTreasuryMock.mockReturnValue({
         metrics: [],
         streams: [],

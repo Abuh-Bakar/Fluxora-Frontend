@@ -5,6 +5,7 @@ interface PaginationProps {
   itemsPerPage: number;
   currentPage: number;
   onPageChange: (page: number) => void;
+  onItemsPerPageChange?: (limit: number) => void;
 }
 
 export function normalizePagination(totalItems: number, itemsPerPage: number, currentPage: number) {

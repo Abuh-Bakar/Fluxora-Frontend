@@ -107,7 +107,6 @@ export default function WalletStatus({
     // Explicit failure feedback
     setAnnouncement("Failed to copy address. Please copy manually.");
     // Show a visual error state briefly
-    const prevCopied = copied;
     setCopied(false);
     // Use a separate state or visual indicator for error
     // We'll use the copied state with a different visual
