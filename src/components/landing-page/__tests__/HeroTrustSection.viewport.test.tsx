@@ -54,7 +54,13 @@ describe("HeroSection and TrustSection responsive layout", () => {
       expect(trustHeading).toBeInTheDocument();
       expect(screen.getByText(/dao treasury/i)).toBeInTheDocument();
       expect(screen.getByText(/grant program/i)).toBeInTheDocument();
-      expect(screen.getByText(/ecosystem fund/i)).toBeInTheDocument();
+      // Use a heading-scoped query here: HeroSection's copy ("...DAOs, grants,
+      // and ecosystem funds.") also matches /ecosystem fund/i as plain text,
+      // so a bare getByText ambiguously matches both it and the TrustSection
+      // card title when both components are rendered together in this test.
+      expect(
+        screen.getByRole("heading", { level: 3, name: /ecosystem fund/i }),
+      ).toBeInTheDocument();
 
       // jsdom does not provide true visual overlap detection for responsive layouts.
       // This regression test therefore asserts that key content is present,
